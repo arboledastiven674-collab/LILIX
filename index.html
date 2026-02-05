@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LILIX PANEL V1</title>
+    <style>
+        :root { --neon: #00ff41; --bg: #050505; }
+        body { background: var(--bg); color: white; font-family: sans-serif; text-align: center; margin: 0; padding: 20px; }
+        .card { border: 2px solid var(--neon); border-radius: 15px; padding: 20px; box-shadow: 0 0 15px var(--neon); }
+        h1 { text-shadow: 0 0 10px var(--neon); font-size: 1.8rem; }
+        .console { background: #000; border: 1px solid #333; height: 120px; margin: 20px 0; padding: 10px; font-family: monospace; font-size: 0.8rem; overflow-y: hidden; color: #00ff41; text-align: left; }
+        .btn { background: transparent; border: 2px solid var(--neon); color: var(--neon); width: 100%; padding: 15px; font-weight: bold; border-radius: 8px; cursor: pointer; margin-bottom: 10px; }
+        .btn:active { background: var(--neon); color: black; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .btn-game { background: #222; border: 1px solid #444; color: white; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>LILIX PANEL PRO</h1>
+    <div class="console" id="log">SISTEMA ESPERANDO ACTIVACIÓN...</div>
+    
+    <button class="btn" id="mainBtn" onclick="activate()">ESTABILIZADOR DE MIRA 100%</button>
+
+    <div class="grid">
+        <button class="btn-game" onclick="launch('com.dts.freefireth')">FREE FIRE</button>
+        <button class="btn-game" onclick="launch('com.dts.freefiremax')">FREE FIRE MAX</button>
+    </div>
+</div>
+
+<script>
+    function activate() {
+        const log = document.getElementById('log');
+        const btn = document.getElementById('mainBtn');
+        btn.disabled = true;
+        
+        const commands = [
+            "Conectando al motor Unity...",
+            "Cargando archivos de sensibilidad...",
+            "APLICANDO 100 COMANDOS XIT...",
+            "Buscando carpeta del juego...",
+            "Limpiando lag de cursor...",
+            "Fijando eje Y en 0.05...",
+            "ESTABILIZADOR LILIX 100% ACTIVADO"
+        ];
+
+        let i = 0;
+        const interval = setInterval(() => {
+            log.innerHTML += "> " + commands[i] + "<br>";
+            i++;
+            if (i >= commands.length) {
+                clearInterval(interval);
+                btn.innerHTML = "¡INYECCIÓN EXITOSA!";
+            }
+        }, 800);
+    }
+
+    function launch(pack) {
+        window.location.href = "intent://#Intent;scheme=package;package=" + pack + ";end";
+    }
+</script>
+
+</body>
+</html>
